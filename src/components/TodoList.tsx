@@ -10,13 +10,14 @@ export const TodoList: React.FC<TodoListProps> = ({todos, onRemove,onToggle}) =>
         <ul>
             {todos.map(todo  =>{
                 const classes = ['todo']
-                if(todo.completed){
+                if(todo.completed === true){
+                    console.log('push')
                     classes.push('completed')
                 }
                 return(
                     <li className={classes.join(' ')} key={todo.id}>
                     <label >
-                        <input type="checkbox" checked={todo.completed}/>
+                        <input type="checkbox" checked={todo.completed} onChange={onToggle.bind(null,todo.id)}/>
                         <span>{todo.title}</span>
                         <i className="material-icons red-text" onClick={() => onRemove(todo.id)}>delete</i>
                     </label>
